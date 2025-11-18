@@ -1,0 +1,234 @@
+\documentclass[10pt,a4paper]{article}
+
+% --- 修正与设置 ---
+\usepackage[a4paper, top=2.0cm, bottom=2.0cm, left=2.0cm, right=2.0cm]{geometry}
+\usepackage{fontspec}
+\usepackage[english, chinese, provide=*]{babel}
+\usepackage{indentfirst} % [关键修正 1] 引入宏包，强制所有段落首行缩进
+
+% --- 字体设置 ---
+% 1. 为文档设置主要的西文（默认）和中文衬线/无衬线字体
+\babelfont{rm}[Language=Default]{Noto Serif}
+\babelfont{sf}[Language=Default]{Noto Sans}
+\babelfont[chinese]{rm}{Noto Sans CJK SC}
+\babelfont[chinese]{sf}{Noto Sans CJK SC}
+
+% 2. 定义一个名为 \kaiboldfamily 的新字体族，用于显示“伪粗体楷体”
+\newfontfamily\kaiboldfamily[Language=Chinese Simplified, FakeBold=1.5]{KaiTi}
+
+% --- 其他宏包 ---
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{overpic}
+\usepackage{enumitem}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+\usepackage{multicol}
+
+% --- [关键修正 2] 彻底重写 abstract 环境，使其成为一个标准的缩进段落 ---
+\renewenvironment{abstract}{%
+  \par\addvspace{\topsep}\small % 开始新段落，设置字体，增加垂直间距
+  \indent % 应用标准的段落首行缩进
+  \textbf{摘 要：}\kaiboldfamily\ignorespaces % 输出标题和内容
+}{\par\addvspace{\topsep}} % 结束段落
+
+% --- [关键修正 3] 重写 \mypara 命令，使其与摘要格式一致 ---
+\newcommand{\mypara}[1]{%
+    \par\addvspace{1ex}% 在关键词前增加一些垂直间距
+    \indent\textbf{#1：}\ignorespaces% 应用标准的段落首行缩进
+}
+
+\graphicspath{{figures/}}
+\setcounter{page}{1}
+
+\begin{document}
+
+\title{自然辩证法视角下碳点在生物应用中的创新与伦理审视}
+
+\author{王梦迪\\
+\small 2025级医学信息工程学院研究生班 202500502013 医学影像技术}
+\date{}
+
+\maketitle
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+本文以自然辩证法为理论基石，系统探讨了碳点（Carbon Dots,CDs）这一新兴纳米材料在其生物医学应用领域中所展现的科技进步与内在辩证关系。文章首先阐释了自然辩证法中关于自然界普遍联系、运动发展和矛盾统一的核心观点，为分析碳点技术提供了哲学框架。随后，详细论述了碳点在生物成像、药物递送、疾病诊断与治疗等方面的创新突破，揭示了人类认识自然、改造自然的能动性与科技进步的必然趋势。进而，论文深刻剖析了碳点技术快速发展背后所蕴含的诸多辩证矛盾，包括其卓越生物相容性与潜在生物毒性之间的二重性、技术工具理性与生命价值理性之间的张力、科研创新自由与社会伦理责任之间的平衡、以及技术“双刃剑”效应与可持续发展要求之间的冲突。最后，基于自然辩证法的系统思维和生态价值观，提出了推动碳点技术健康、有序、向善发展的路径思考，强调需在创新驱动与伦理规约的辩证统一中，寻求科技进步与人、社会、自然和谐共生的未来。
+\end{abstract}
+
+\mypara{关键词} 自然辩证法；碳点；生物应用；科技创新；伦理；生物安全性；可持续发展
+
+%%%%%%%%% BODY TEXT
+\begin{multicols}{2}
+
+\section{引言}
+
+自然辩证法是关于自然界和科学技术发展的一般规律以及人类认识自然和改造自然的一般方法的科学，是马克思主义哲学的重要组成部分\cite{liu2003}。它不仅是认识世界的锐利武器，更是指导科技实践的重要方法论。它强调自然界的整体性、联系性、运动性和矛盾性，认为科学技术作为人类实践活动的重要形式，其发展既受自然规律的制约，又深刻影响着人与自然的关系，二者处于一个动态的、辩证的相互作用过程中。在当代科技革命浪潮中，纳米科技的崛起尤为引人注目，其中碳点作为一种新型的零维碳纳米材料，因其独特的光学性质、良好的生物相容性、低毒性、易于表面功能化和水分散性等物理化学性质，在生物医学领域（如生物成像、药物递送、疾病诊断与治疗）展现出巨大的应用潜力，引发了全球性的跨学科研究热潮\cite{ref2}。
+
+碳点的研究与应用，从哲学层面审视，本质上是人类对碳这一自然界最基本、最普遍元素的认识深化与能动的技术创造过程是“自在自然”向“人化自然”转化的生动体现。这一过程并非线性推进，而是充满了复杂的辩证性：它既带来了疾病诊断治疗的革命性希望，也潜藏着未知的生态风险、伦理挑战与社会影响。正如恩格斯在《自然辩证法》中所深刻指出的：“我们不要过分陶醉于我们人类对自然界的胜利。对于每一次这样的胜利，自然界都对我们进行报复。” \cite{liu2003} 碳点技术在生物领域的迅猛发展，在彰显人类智慧、创造力与对生命现象干预能力提升的同时，也必然要求我们超越单纯的技术乐观主义，以更为审慎、全面、辩证的视角，系统审视其可能带来的复杂后果，思考如何驾驭这把新时代的“双刃剑”。
+
+因此，本文将立足于自然辩证法的基本原理，聚焦于碳点在生物应用中的具体实践，系统分析其技术创ника内在动力、哲学意蕴与社会表现，深入剖析其发展过程中已然暴露及潜在的各种矛盾，并试图在自然辩证法的指引下，探讨如何实现碳点技术创新与伦理约束、生态关怀的协同发展，促进科技更好地造福人类，推动人与自然生命共同体的和谐演进。
+
+\section{自然辩证法与科技创新的内在关联}
+
+自然辩证法为我们超越技术细节，从更高层面理解和评估碳点等新兴技术提供了深刻的世界观和方法论。它要求我们将技术活动置于自然史与人类史交织的宏大背景中加以考察。
+
+首先，自然辩证法揭示了自然界的普遍联系和作为系统存在的本质。任何技术产物，包括碳点，都不是孤立存在的抽象实体。其制备原料（可能来自天然生物质、化石燃料或工业废弃物）、合成过程（消耗能源、可能产生废气废水）、应用场景（复杂的生物体内环境、社会医疗体系）以及最终归趋（生物降解、器官蓄积或环境排放），无不与更大的自然生态系统、社会系统和经济系统紧密相连、相互作用。这意味着对碳点技术的评价绝不能仅仅局限于实验室环境下测得的优异性能指标，而必须置于生命系统、环境系统和社会系统的整体性、关联性框架中进行综合考量。一种在体外实验中表现卓越的碳点成像探针，可能在活体环境中因蛋白冠形成而失效，或其降解产物可能对水生生态系统产生慢性毒性。这种系统关联性要求我们必须具备全局视野。
+
+其次，自然辩证法强调事物的运动、变化和发展是永恒的，世界是过程的集合体。碳点技术本身就是一个不断演进、充满活力的知识体系和应用系统。从其2004年被偶然发现于纯化单壁碳纳米管的过程中\cite{ref3}，到如今通过各种前驱体和合成路线（如水热法、微波法、热解法）实现可控制备与精准功能化设计\cite{ref4}，其发展历程本身就充满了量变与质变、肯定与否定的辩证运动。新的合成方法带来新的性质，新的性质催生新的应用构想，而新的应用又在实践中提出新的科学问题（如体内命运、长期效应），从而推动基础研究的进一步深入。这种“实践-认识-再实践-再认识”的螺旋式上升过程，正是技术发展的内在逻辑与生命力所在。
+
+最后，也是最为核心的，自然辩证法坚持矛盾是事物发展的源泉和根本动力。碳点技术在生物应用中的推进，自始至终都贯穿着多种矛盾的对立统一。例如：
+\begin{enumerate}[label*=\arabic*.]
+    \item 认识与实践的矛盾：人类对碳点生物效应、体内代谢途径的认识总是不完全的、近似的，而临床医学等实践应用却要求在相对确定性和安全性下推进，这种矛盾构成了推动碳点毒理学、药代动力学研究不断深入的内在动力。
+    \item 技术进步与社会伦理的矛盾：技术本身内含着追求无限可能性、突破一切限制的工具理性（如追求极致的高效靶向、与基因编辑技术结合），而社会伦理则要求设定边界，保障人的尊严、社会公正与生态安全，这种价值理性与工具理性的张力始终存在。
+    \item 人类利益与生态价值的矛盾：开发碳点技术首要目的是服务人类健康（体现了人类中心价值），但其整个生命周期可能对其它生物及生态系统产生外溢效应，要求我们尊重自然的内在价值（生态中心价值），这需要谨慎的权衡与协调。
+\end{enumerate}
+这些矛盾的存在并非坏事，也非技术发展的障碍，恰恰是推动碳点技术不断自我扬弃、朝着更完善、更负责任方向发展的内在驱动力。承认矛盾、分析矛盾、寻求矛盾的转化与解决，是自然辩证法指导科技实践的关键所在。
+
+\section{碳点在生物应用中的创新突破：能动性的彰显}
+碳点在生物应用领域的系列创新，集中体现了人类在认识自然规律（物理、化学、生物规律）基础上，发挥主观能动性，创造性地改造自然（合成新材料）、干预自然（治疗疾病）以满足自身健康需求的伟大实践。
+
+\subsection{生物成像与传感领域的革新}
+碳点因其优异的光致发光特性、高稳定性、抗光漂白能力以及潜在的低成本优势，已成为传统有机染料和半导体量子点的有力竞争者，是理想的生物成像探针\cite{ref5}。相较于后者，碳点通常展现出更低的细胞毒性和更好的生物相容性，这在一定程度上减少了对生命系统的外来干扰，更符合自然规律中对生命系统最小干预的原则。研究者通过精细调控碳点的核心结构（尺寸、晶格缺陷）与表面化学（官能团、元素掺杂如N、S、P等），实现了其荧光发射波长从蓝色到近红外区的宽范围、可控制备\cite{ref6}。特别是发射波长位于近红外光学窗口（NIR,700-1700 nm）的碳点，能有效克服生物组织自身对可见光的吸收和散射，实现更深层次、更高分辨率和信噪比的活体成像，为在体观测肿瘤转移、神经活动等生理病理过程提供了强大工具\cite{ref7}。此外，碳点的荧光性质（如强度、波长、寿命）对其所处微环境（如pH值、特定金属离子、活性氧物种、生物分子）高度敏感，可被巧妙设计成智能响应型探针，用于实时、原位监测细胞内的生理病理变化，如肿瘤微酸的pH、细胞内谷胱甘水平等\cite{ref8}。这种将无机纳米材料的物理特性与生命体系的化学信息感知相结合的创新，是人类对物理规律、化学规律与生命活动规律协同运用、交叉融合的典范。
+
+\subsection{药物/基因递送与可控释放}
+碳点易于修饰的功能化表面为其作为高效药物或基因载体提供了便利。通过共价偶联、$\pi$-$\pi$堆积、静电吸附等相互作用，各种治疗性分子（如化疗药物DOX、核酸药物siRNA、蛋白质药物）可以高效负载于碳点上\cite{ref9}。更具革命性意义的是，基于碳点对外部刺激（如特定波长光、热、磁场、特定酶或病理异常的pH）的智能响应特性，可以实现药物在特定靶部位的可控、按需释放。例如，光响应型碳点可以在近红外光照下发生结构变化或产生局部高热，从而触发药物释放，实现时-空精准的“开关”式治疗，最大限度地减少对正常组织的损伤\cite{ref10}。这种“智能”递送策略，极大地提高了药物治疗的指数，是对传统化疗“粗放”、“地毯式轰炸”模式的一种辩证扬弃，体现了人类在干预疾病过程中追求“精准”与“温和”、“高效”与“安全”的辩证统一。
+
+\subsection{协同治疗与诊疗一体化}
+碳点的多功能集成特性使其能够打破诊断与治疗的界限，构建“诊疗一体化”平台。例如，一个精心设计的碳点纳米制剂可以同时承担肿瘤部位的荧光成像/MRI成像（诊断功能）和光热治疗/光动力治疗/药物递送（治疗功能）的多重任务\cite{ref11}。这不仅简化了 logistic 流程，缩短了诊断到治疗的时间，更能通过实时监控治疗响应来动态调整方案，实现个性化医疗。此外，碳点还可以作为放射增敏剂与放疗协同，或与化疗药物联用产生协同增敏效应，从而降低传统疗法所需剂量，提升总体治疗效果\cite{ref12}。这种集成化、协同化的治疗模式，反映了人类对疾病复杂性、系统性的认识深化，以及从单一、线性、分割的思维向综合、系统、整合的治疗策略转变，完全符合自然辩证法关于事物普遍联系、相互作用的整体性观点。
+
+碳点技术的这些创新突破，无疑是科技进步的辉煌成果，它们显著拓展了人类认识生命、对抗疾病、维护健康的能力边界，是“人化自然”进程在生命科学领域的精彩篇章。然而，正如自然辩证法所一贯警示的，每一次技术的跃升，在带来新福祉的同时，都必然伴随着新的矛盾的产生和显现，对碳点技术的审视不能止步于其光鲜的应用前景。
+
+\section{碳点生物应用中的辩证矛盾与伦理问题}
+碳点技术在生物医学领域高歌猛进的同时，其内在的辩证矛盾也逐渐从潜在状态转化为现实问题，引发了一系列亟待关注的科学、伦理与社会挑战。
+
+\subsection{生物相容性与生物毒性的二重性}
+这是碳点技术最核心、最基础的辩证矛盾之一，深刻体现了事物的两面性。普遍宣传和初步研究表明碳点具有良好的生物相容性，这是其能够进入生物医学应用领域的基本前提。然而，随着研究的深入，越来越多的证据表明，碳点的生物效应远非总是 benign（良性的），其生物安全性是一个复杂的、多因素决定的谱系，绝非简单的“是”或“否”可以回答\cite{ref13}。
+\begin{enumerate}[label*=\arabic*.]
+    \item 尺寸、结构与表面化学的依赖性：碳点的毒性与其一系列物理化学参数（如粒径分布、晶格结构、表面官能团种类与密度、表面电荷性质）存在着高度的依赖性。微小的结构差异可能导致与生物体系相互作用的巨大不同，从而引发迥异的生物效应。例如，粒径更小（<5 nm）的碳点可能更容易穿透细胞膜、血脑屏屏障乃至核膜，与细胞内关键生物大分子发生不可预知的相互作用，潜在地干扰正常的细胞功能\cite{ref14}。而表面富含氨基、带强正电荷的碳点，可能因强烈的静电作用更易与带负电的细胞膜磷脂层结合，导致膜电位改变、膜完整性破坏，甚至诱发细胞凋亡\cite{ref15}。
+    \item 剂量-效应关系：即使是物理化学性质完全相同的同一批次碳点，其生物效应也严格遵循经典的剂量-效应关系。在低浓度或剂量下，它们可能表现出无毒甚至有益的生物学功能（如抗氧化活性），但在高浓度或剂量下，则可能因氧化应激、炎症反应、细胞器功能障碍等机制产生明显的细胞毒性\cite{ref16}。这要求在实际临床应用前，必须通过严谨的临床前研究，精确界定其安全窗口和治疗窗口。
+    \item 长期效应与代谢归趋的不确定性：目前绝大多数毒性研究集中于急性或短期暴露效应，而对于碳点在复杂生物体内的长期滞留情况、生物降解动力学、降解产物的化学性质与生物活性、可能的器官特异性蓄积倾向（如在肝、脾、肾）以及潜在的慢性效应、免疫原性甚至代际影响，我们的认知仍然非常有限，存在大量的“未知的未知”\cite{ref17}。碳点能否被生物体完全代谢并排出体外？其降解中间体是否具有新的生物活性或毒性？这些悬而未决的关键问题，尖锐地反映了人类认识相对于快速发展的技术实践需求的滞后性矛盾。
+\end{enumerate}
+
+\subsection{技术工具理性与生命价值理性的张力}
+工具理性关注效率、效能、可控性和可计算性，而价值理性关注目的、意义、尊严和终极关怀。碳点技术，特别是当其与基因编辑、神经调控、人工智能等更前沿技术领域交叉结合时，这种张力变得尤为突出和紧迫。
+\begin{enumerate}[label*=\arabic*.]
+    \item 生命“物化”与“技术化”的风险：将碳点作为高效、精准的工具应用于人体，可能会在观念和实践上潜移默化地导致将生命体视为一部可以随意修理、优化、升级的精密机器，削弱对生命神圣性、复杂性和整体性的传统敬畏。当治疗（治疗疾病）与增强（提升正常机能）之间的界限因技术能力的提升而变得日益模糊时（例如，未来可能利用碳点递送系统进行认知增强、体能强化），将会引发关于人的本质、人格同一性、生命尊严以及何为“自然”的深刻伦理争议和哲学辩论。
+    \item “设计”生命与公平正义的挑战：随着碳点精准递送能力和生物相容性的不断提升，未来完全可能将其用于进行极其精细的遗传调控或生理功能修饰。这种强大的“设计”能力若缺乏坚实的价值理性引导和严格的社会伦理约束，可能导向对所谓“完美生命”的非理性追求，加剧社会已有的不平等，甚至可能被用于非医学目的的“增强”，制造新的社会分层，触碰人类道德的底线和基本的社会公平正义原则。
+\end{enumerate}
+
+\subsection{科研创新自由与社会伦理责任的平衡}
+科学探索本身具有内在的自由冲动，渴望突破一切已知的界限。然而，科技活动作为嵌入特定社会历史语境中的实践活动，必须承担相应的伦理责任和社会后果。
+\begin{enumerate}[label*=\arabic*.]
+    \item 隐私与信息安全：倘若未来碳点技术用于体内实时、不间断地监测个体的生理生化指标、基因表达乃至神经电活动，这些高度敏感的个性化健康数据如何采集、存储、传输和使用？其隐私边界何在？是否存在被商业机构滥用、被保险公司用于歧视性定价、或被政府用于非常规社会监控的风险？
+    \item 环境伦理责任：碳点技术从实验室的基础研究走向大规模工业化生产和广泛临床应用，其在整个生命周期中对生态环境的潜在影响不容忽视。从原料获取的可持续性，到制备过程的绿色化学原则（减少能耗与三废），再到使用后随排泄物或废弃物进入环境后的迁移、转化、归趋及其对土壤、水体、微生物及高等生物的生态毒性，都需要未雨绸缪，进行系统性的环境影响评价和生命周期评估\cite{ref18}。绝不能因为其在医疗上潜在的巨大益处，而采取“鸵鸟政策”，忽视其对“大地共同体”可能造成的远期、累积性伤害。
+    \item 公正与可及性：基于碳点的先进诊断方法和疗法，在研发初期和生产规模有限的情况下，很可能成本高昂，是否会成为只有富裕阶层和发达国家能够享用的“医疗奢侈品”，从而加剧全球范围内和社会内部本就存在的健康不平等与医疗资源鸿沟？技术在发展初期，其高成本与它所追求的普惠性、公益性目标之间，构成了一对尖锐的现实矛盾。
+\end{enumerate}
+
+\subsection{技术“双刃剑”效应与可持续发展}
+碳点技术本身作为知识体系和工具体系，从价值论角度看是“中立”的，但其具体的应用目的、方式和后果却具有鲜明的价值导向性。同一项碳点制备与功能化技术，既可用于靶向杀滅癌细胞、造福患者，也可能被误用（如因安全性研究不足导致意外伤害）或恶用（例如用于开发新型生物武器、进行不道德的人体实验或强制性的行为控制）。这种内在的“双刃剑”特性，要求我们必须建立与之潜在风险相匹配的、健全的伦理评估、监管法规和国际共识。同时，技术的可持续发展，不仅要求其自身在环境维度上是友好的，也要求其与社会结构、经济发展水平、文化传统和价值观念相协调，形成良性互动，而非引发社会撕裂、经济震荡或文化冲突。
+
+\section{自然辩证法指引下碳点技术的未来发展路径}
+面对碳点生物应用中涌现的诸多矛盾与挑战，我们不应因噎废食、止步不前，也不能盲目乐观、失控狂奔，而应在自然辩证法的科学世界观和方法论指导下，寻求化解矛盾、推动技术健康、有序、向善发展的有效路径。
+
+\subsection{坚持系统思维，开展全生命周期评价与精准安全性研究}
+必须彻底摒弃孤立、静止、片面的传统研究模式，将碳点置于“原料-设计-制备-应用-废弃-归趋”的全链条、多维度视角中进行系统性的评估和管理。加强对碳点“结构-活性-毒性”构效关系的深入研究，利用人工智能和大数据技术，建立标准化的、高通量的毒性评价体系、预测模型和安全数据库。特别要着力关注其长期生物效应、体内代谢动力学、跨屏障转运能力、降解途径、环境命运及其对生态系统的潜在影响\cite{ref19}。通过主动的、前瞻性的精准表面工程和绿色合成设计，预先规避已知的风险因素（如调控表面电荷以降低膜毒性），朝着“设计即安全”、“源于自然、归于自然”的崇高目标努力\cite{ref20}。这深刻体现了从整体上、本质上把握事物，通过认识必然、尊重规律来实现人类实践自由的辩证法思想。
+
+\subsection{强化价值引领，建立健全科技伦理治理体系}
+必须将伦理考量作为内在维度，深度嵌入碳点技术研发、转化、应用和监管的全过程，实现向“负责任的创新”范式转变。具体包括：
+\begin{enumerate}[label*=\arabic*.]
+    \item 完善伦理规范和指南：针对碳点生物应用，特别是涉及人体试验、基因操作、数据采集等高风险领域，制定比现有通用规范更为细化、更具操作性的伦理审查标准、技术指南和行业公约。
+    \item 加强科研人员伦理教育：在高等教育和职业培训中，强化对科技工作者的科技伦理、工程伦理和生命伦理教育，提升其伦理意识、人文素养和社会责任感，使其在追求技术创新的同时，始终保持对生命的敬畏、对自然的尊重和对社会福祉的承诺。
+    \item 推动公众参与和跨学科对话：科技决策不应只是科学家、工程师和行政官员的封闭事务。应建立开放、透明、有效的公众沟通、参与和协商机制，促进社会公众、人文学者、法律专家、伦理学家与科技共同体之间的深度对话，增进社会对碳点技术风险与收益、机遇与挑战的理解与理性讨论，使科技发展更好地回应社会多元价值诉K求和公众关切，确保科技发展的民主方向。
+\end{enumerate}
+
+\subsection{倡导知行合一，推动产学研用的协同治理}
+鼓励基础研究、应用开发、产业转化、临床验证、政策制定与监管评估等各环节之间的紧密协作、信息共享与反馈闭环。产业界应更具前瞻性和社会责任感，在产品设计初期就充分考虑其全生命周期的安全性与环保性。监管部门需要具备学习能力，与时俱进，跟踪技术前沿动态，探索基于风险的、敏捷的适应性监管模式，在防范风险和鼓励创新之间寻求动态平衡。通过“实践-认识-再实践-再认识”的循环往f复，不断修正错误，积累正反两方面经验，逐步建立起与碳点技术发展阶段相适应的、健全、高效、国际接轨的治理框架。
+
+\subsection{树立生态价值观，追求人与自然的和谐共生}
+碳点技术的最终发展目标，应自觉地服务于构建人与自然生命共同体这一宏大愿景。在材料选择上，优先考虑可再生生物质资源（如果皮、秸秆）和原子经济性高的绿色合成路线\cite{ref21}；在产品设计上，充分考虑其生物可降解性、环境相容性和最终无害化分解；在技术路线上，不仅关注人类健康，也应积极探索如何利用碳点技术的特性解决环境问题（如作为高灵敏度探针用于环境污染物的监测、作为光催化剂用于水体净化），反哺生态环境保护与修复。使碳点技术不仅成为守护人类生命健康的利器，也成为促进整个地球生态系统健康、稳定与可持续发展的积极力量，实现从征服、掠夺自然到与自然和谐共生的文明范式转型。
+
+\section{结论}
+碳点在生物应用中的创新实践，是一场人类运用理性智慧与实践力量改造自然、谋求自身福祉的宏大实验，生动地演绎了自然辩证法所揭示的普遍联系、永恒发展和矛盾运动的客观规律。它既展现了科技作为第一生产力和历史有力杠杠的巨大威力，为我们战胜疾病、提升生命质量带来了前所未有的希望；也无情地揭示了技术进步背后复杂的矛盾运动和潜在的异化风险，对传统的伦理观念、社会结构和生态秩序构成了严峻挑战。我们既要充分肯定其在推动医学进步、增进人类健康方面蕴含的巨大潜力，积极稳妥地推进其研发与应用；也要清醒地认识到其在生物安全性、生命倫理、社会公正、生态环境和全球治理等方面提出的深刻问题，未雨绸缪地加以防范和引导。
+
+未来，碳点技术的发展，必须自觉接受自然辩证法的指导，坚持系统观、矛盾观和发展观，在科技创新与伦理规约之间、在征服自然与敬畏自然之间、在工具理性与价值理性之间、在人类利益与生态价值之间，保持必要的张力并找到动态的、历史的平衡支点。唯有如此，我们才能驾驭好碳点这把日益锋利的“双刃剑”，使其真正成为推动人、社会与自然和谐共生、协同进化的建设性力量，在通往生态文明新时代的道路上，写下属于这个时代的、充满智慧与责任的、无愧于后人的技术注脚。科技的征程未有穷期，而对科技发展的哲学反思、伦理引领与人文关怀，同样永无止境。
+
+{\small
+\begin{thebibliography}{21}
+\setlength{\itemsep}{0pt}
+\setlength{\parskip}{0pt}
+
+\bibitem{liu2003}
+刘啸霆. 走向历史深处——历史唯物论与新概念自然辩证法的基本任务. \emph{科学技术与辩证法} 2003, \emph{20}(1), 1-4.
+
+\bibitem{ref2}
+Liu, J.; Geng, Y.; Li, D.; et al. Deep Red Emissive Carbonized Polymer Dots with Unprecedented Narrow Full Width at Half Maximum. \emph{Adv. Mater.} 2020, \emph{32}, 1906641.
+
+\bibitem{ref3}
+Jiang, K.; Wang, Y.; Gao, X.; Cai, C.; Lin, H. Facile, Quick, and Gram-Scale Synthesis of Ultralong-Lifetime Room-Temperature-Phosphorescent Carbon Dots by Microwave Irradiation. \emph{Angew. Chem., Int. Ed.} 2018, \emph{57}, 6216--6220.
+
+\bibitem{ref4}
+Hu, C.; Li, M.; Qiu, J.; Sun, Y. P. Design and Fabrication of Carbon Dots for Energy Conversion and Storage. \emph{Chem. Soc. Rev.} 2019, \emph{48}, 2315--2337.
+
+\bibitem{ref5}
+Liu, M. L.; Chen, B. B.; Li, C. M.; Huang, C. Z. Carbon Dots: Synthesis, Formation Mechanism, Fluorescence Origin and Sensing Applications. \emph{Green Chem.} 2019, \emph{21}, 449--471.
+
+\bibitem{ref6}
+Zhu, S.; Song, Y.; Zhao, X.; et al. The Photoluminescence Mechanism in Carbon Dots (Graphene Quantum Dots, Carbon Nanodots, and Polymer Dots): Current State and Future Perspective. \emph{Nano Res.} 2015, \emph{8}, 355--381.
+
+\bibitem{ref7}
+Hoang, V. C.; Dave, K.; Gomes, V. G. Carbon Quantum Dot-Based Composites for Energy Storage and Electrocatalysis: Mechanism, Applications and Future Prospects. \emph{Nano Energy} 2019, \emph{66}, 104093.
+
+\bibitem{ref8}
+Zhang, Z.; Yi, G.; Li, P.; et al. A Minireview on Doped Carbon Dots for Photocatalytic and Electrocatalytic Applications. \emph{Nanoscale} 2020, \emph{12}, 13899--13906.
+
+\bibitem{ref9}
+Yuan, F.; Wang, Y. K.; Sharma, G.; et al. Bright High-Colour-Purity Deep-Blue Carbon Dot Light-Emitting Diodes via Efficient Edge Amination. \emph{Nat. Photonics} 2020, \emph{14}, 171--176.
+
+\bibitem{ref10}
+Xu, X.; Ray, R.; Gu, Y.; et al. Electrophoretic Analysis and Purification of Fluorescent Single-Walled Carbon Nanotube Fragments. \emph{J. Am. Chem. Soc.} 2004, \emph{126}, 12736--12737.
+
+\bibitem{ref11}
+Sun, Y. P.; Zhou, B.; Lin, Y.; et al. Quantum-Sized Carbon Dots for Bright and Colorful Photoluminescence. \emph{J. Am. Chem. Soc.} 2006, \emph{128}, 7756--7757.
+
+\bibitem{ref12}
+Zhu, S.; Meng, Q.; Wang, L.; et al. Highly Photoluminescent Carbon Dots for Multicolor Patterning, Sensors, and Bioimaging. \emph{Angew. Chem., Int. Ed.} 2013, \emph{52}, 3953--3957.
+
+\bibitem{ref13}
+Ding, H.; Yu, S. B.; Wei, J. S.; Xiong, H. M. Full-Color Light-Emitting Carbon Dots with a Surface-State-Controlled Luminescence Mechanism. \emph{ACS Nano} 2016, \emph{10}, 484--491.
+
+\bibitem{ref14}
+Miao, X.; Qu, D.; Yang, D.; et al. Synthesis of Carbon Dots with Multiple Color Emission by Controlled Graphitization and Surface Functionalization. \emph{Adv. Mater.} 2018, \emph{30}, 1704740.
+
+\bibitem{ref15}
+Li, D.; Jing, P.; Sun, L.; et al. Near-Infrared Excitation/Emission and Multiphoton-Induced Fluorescence of Carbon Dots. \emph{Adv. Mater.} 2018, \emph{30}, 1705913.
+
+\bibitem{ref16}
+Lu, S.; Sui, L.; Liu, J.; et al. Near-Infrared Photoluminescent Polymer--Carbon Nanodots with Two-Photon Fluorescence. \emph{Adv. Mater.} 2017, \emph{29}, 1603443.
+
+\bibitem{ref17}
+Shao, J.; Zhu, S.; Liu, H.; et al. Full-Color Emission Polymer Carbon Dots with Quench-Resistant Solid-State Fluorescence. \emph{Adv. Sci.} 2017, \emph{4}, 1700395.
+
+\bibitem{ref18}
+Bao, X.; Yuan, Y.; Chen, J.; et al. In Vivo Theranostics with Near-Infrared-Emitting Carbon Dots Highly Efficient Photothermal Therapy Based on Passive Targeting after Intravenous Administration. \emph{Light: Sci. Appl.} 2018, \emph{7}, 91.
+
+\bibitem{ref19}
+Liu, J.; Li, D.; Zhang, K.; et al. One-Step Hydrothermal Synthesis of Nitrogen-Doped Conjugated Carbonized Polymer Dots with 31\% Efficient Red Emission for In Vivo Imaging. \emph{Small} 2018, \emph{14}, 1703919.
+
+\bibitem{ref20}
+Yan, Y.; Gong, J.; Chen, J.; et al. Recent Advances on Graphene Quantum Dots: From Chemistry and Physics to Applications. \emph{Adv. Mater.} 2019, \emph{31}, 1808283.
+
+\bibitem{ref21}
+Ye, X.; Xiang, Y.; Wang, Q.; Li, Z.; Liu, Z. A Red Emissive Two-Photon Fluorescence Probe Based on Carbon Dots for Intracellular PH Detection. \emph{Small} 2019, \emph{15}, 1901673.
+
+\end{thebibliography}
+}
+\end{multicols}
+
+\end{document}
